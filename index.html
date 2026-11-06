@@ -1,0 +1,751 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Throwback PH | Tracing the Pop</title>
+
+<link href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=Playfair+Display:wght@600;700;800&display=swap" rel="stylesheet">
+
+<style>
+:root {
+  --pink: #e8a6b7;
+  --dark-pink: #a94f6b;
+  --cream: #fff8f1;
+  --paper: #fffdf9;
+  --brown: #543d3d;
+  --muted: #846d6d;
+  --line: #ead9d4;
+}
+
+* { box-sizing: border-box; scroll-behavior: smooth; }
+
+body {
+  margin: 0;
+  font-family: 'DM Sans', sans-serif;
+  background: var(--cream);
+  color: var(--brown);
+}
+
+header {
+  position: sticky;
+  top: 0;
+  z-index: 10;
+  background: rgba(255,248,241,.96);
+  border-bottom: 1px solid var(--line);
+  padding: 14px 7%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.logo {
+  font-family: 'Playfair Display', serif;
+  font-weight: 800;
+  font-size: 21px;
+  color: var(--dark-pink);
+}
+
+nav {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 18px;
+}
+
+nav a {
+  color: var(--brown);
+  text-decoration: none;
+  font-size: 13px;
+  font-weight: 700;
+}
+
+nav a:hover { color: var(--dark-pink); }
+
+section { padding: 75px 8%; }
+
+.hero {
+  min-height: 590px;
+  display: flex;
+  align-items: center;
+  background:
+    linear-gradient(90deg, rgba(50,25,30,.78), rgba(50,25,30,.15)),
+    url("https://images.unsplash.com/photo-1492684223066-81342ee5ff30?auto=format&fit=crop&w=1800&q=85");
+  background-size: cover;
+  background-position: center;
+  color: white;
+}
+
+.hero-content { max-width: 680px; }
+
+.eyebrow {
+  text-transform: uppercase;
+  letter-spacing: 4px;
+  font-size: 12px;
+  font-weight: 700;
+}
+
+h1, h2, h3 {
+  font-family: 'Playfair Display', serif;
+}
+
+.hero h1 {
+  font-size: clamp(48px, 8vw, 82px);
+  line-height: 1.02;
+  margin: 18px 0;
+}
+
+.hero p {
+  font-size: 17px;
+  line-height: 1.8;
+  max-width: 570px;
+}
+
+.btn {
+  display: inline-block;
+  background: var(--dark-pink);
+  color: white;
+  padding: 13px 23px;
+  border-radius: 30px;
+  text-decoration: none;
+  font-weight: 700;
+  margin-top: 16px;
+  border: none;
+  cursor: pointer;
+}
+
+.btn:hover { background: #813b52; }
+
+.section-heading {
+  text-align: center;
+  margin-bottom: 40px;
+}
+
+.section-heading h2 {
+  font-size: clamp(30px, 5vw, 45px);
+  margin: 10px 0;
+}
+
+.section-heading p {
+  color: var(--muted);
+  line-height: 1.7;
+  max-width: 650px;
+  margin: auto;
+}
+
+.intro {
+  background: var(--paper);
+  text-align: center;
+}
+
+.intro-text {
+  max-width: 850px;
+  margin: auto;
+  font-size: 17px;
+  line-height: 1.9;
+}
+
+.exhibit-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(240px, 1fr));
+  gap: 22px;
+}
+
+.exhibit-card {
+  background: var(--paper);
+  border: 1px solid var(--line);
+  border-radius: 17px;
+  overflow: hidden;
+  transition: .25s;
+}
+
+.exhibit-card:hover {
+  transform: translateY(-6px);
+  box-shadow: 0 12px 25px #6e43501a;
+}
+
+.exhibit-card img {
+  width: 100%;
+  height: 205px;
+  object-fit: cover;
+  display: block;
+}
+
+.card-content { padding: 22px; }
+
+.card-content h3 { font-size: 23px; margin: 5px 0 10px; }
+
+.card-content p {
+  color: var(--muted);
+  font-size: 14px;
+  line-height: 1.7;
+}
+
+.tag {
+  color: var(--dark-pink);
+  font-size: 11px;
+  font-weight: 700;
+  text-transform: uppercase;
+  letter-spacing: 2px;
+}
+
+.gallery {
+  background: #f6e6e7;
+}
+
+.gallery-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(210px, 1fr));
+  gap: 17px;
+}
+
+.gallery-item {
+  background: white;
+  padding: 10px;
+  border-radius: 8px;
+  box-shadow: 0 5px 15px #543d3d14;
+}
+
+.gallery-item img {
+  width: 100%;
+  height: 210px;
+  object-fit: cover;
+  display: block;
+}
+
+.gallery-item p {
+  font-family: 'Playfair Display', serif;
+  text-align: center;
+  margin: 12px 4px 5px;
+}
+
+.comparison {
+  background: var(--paper);
+}
+
+.compare-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(270px, 1fr));
+  gap: 25px;
+}
+
+.compare-card {
+  border: 1px solid var(--line);
+  border-radius: 16px;
+  padding: 20px;
+  background: white;
+}
+
+.compare-card h3 {
+  color: var(--dark-pink);
+  font-size: 23px;
+  margin-top: 0;
+}
+
+.compare-images {
+  display: grid;
+  grid-template-columns: 1fr 1fr;
+  gap: 10px;
+}
+
+.compare-images img {
+  width: 100%;
+  height: 145px;
+  object-fit: cover;
+  border-radius: 9px;
+}
+
+.compare-label {
+  font-size: 12px;
+  font-weight: 700;
+  margin: 8px 0;
+}
+
+.compare-card p {
+  font-size: 13px;
+  color: var(--muted);
+  line-height: 1.7;
+}
+
+.future {
+  background: #5b3d48;
+  color: white;
+}
+
+.future .section-heading p { color: #f0dce2; }
+
+.future-grid {
+  display: grid;
+  grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+  gap: 18px;
+}
+
+.future-card {
+  padding: 23px;
+  border: 1px solid #ffffff45;
+  border-radius: 14px;
+  background: #ffffff0d;
+}
+
+.future-card h3 { font-size: 21px; }
+
+.future-card p {
+  font-size: 14px;
+  line-height: 1.7;
+  color: #f0dce2;
+}
+
+.sources {
+  background: var(--paper);
+}
+
+.source-list {
+  max-width: 800px;
+  margin: auto;
+}
+
+.source-list li {
+  margin: 13px 0;
+  line-height: 1.6;
+}
+
+.source-list a {
+  color: var(--dark-pink);
+  overflow-wrap: anywhere;
+}
+
+footer {
+  background: #38282d;
+  color: white;
+  text-align: center;
+  padding: 30px 15px;
+  font-size: 13px;
+  line-height: 1.8;
+}
+
+footer strong {
+  font-family: 'Playfair Display', serif;
+  font-size: 20px;
+}
+
+@media(max-width: 650px) {
+  header { justify-content: center; }
+  nav { justify-content: center; gap: 12px; }
+  section { padding: 55px 6%; }
+  .hero { min-height: 520px; }
+}
+</style>
+</head>
+
+<body>
+
+<header>
+  <div class="logo">THROWBACK PH.</div>
+  <nav>
+    <a href="#home">Home</a>
+    <a href="#about">About</a>
+    <a href="#exhibits">Exhibits</a>
+    <a href="#gallery">Gallery</a>
+    <a href="#comparison">Then & Now</a>
+    <a href="#future">2030</a>
+    <a href="#sources">Sources</a>
+  </nav>
+</header>
+
+<!-- HOME -->
+<section class="hero" id="home">
+  <div class="hero-content">
+    <div class="eyebrow">A Digital Museum of Philippine Popular Culture</div>
+    <h1>Tracing the Pop.</h1>
+    <p>
+      Step back into the 1990s and discover the music, fashion,
+      technology, and experiences that shaped a generation.
+      Explore how Filipino popular culture continues to evolve.
+    </p>
+    <a class="btn" href="#exhibits">Explore the Museum</a>
+  </div>
+</section>
+
+<!-- ABOUT -->
+<section class="intro" id="about">
+  <div class="section-heading">
+    <span class="tag">Welcome to Throwback PH</span>
+    <h2>Every Era Has a Story</h2>
+  </div>
+  <div class="intro-text">
+    <p>
+      The 1990s was a memorable period in Philippine popular culture.
+      It was a time of iconic OPM songs, colorful fashion trends,
+      handwritten letters, cassette tapes, and shared experiences
+      that brought people together.
+    </p>
+    <p>
+      Throwback PH takes visitors on a journey through these cultural
+      moments, showing how everyday life in the past compares with
+      the present and what the future may bring.
+    </p>
+  </div>
+</section>
+
+<!-- EXHIBITS -->
+<section id="exhibits">
+  <div class="section-heading">
+    <span class="tag">Museum Collections</span>
+    <h2>Explore the Exhibits</h2>
+    <p>Discover the different aspects of Filipino life and popular culture during the 1990s.</p>
+  </div>
+
+  <div class="exhibit-grid">
+
+    <article class="exhibit-card">
+      <img src="https://images.unsplash.com/photo-1483985988355-763728e1935b?auto=format&fit=crop&w=900&q=85" alt="Fashion display">
+      <div class="card-content">
+        <span class="tag">Exhibit 01</span>
+        <h3>Body & Self-Image</h3>
+        <p>
+          Explore the fashion trends, personal styles, and beauty
+          influences that shaped how people expressed themselves.
+          From kikay accessories to denim outfits, style became
+          a way of showing individuality.
+        </p>
+      </div>
+    </article>
+
+    <article class="exhibit-card">
+      <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=85" alt="Music and cassette player">
+      <div class="card-content">
+        <span class="tag">Exhibit 02</span>
+        <h3>Technology</h3>
+        <p>
+          Before smartphones and streaming platforms, people used
+          pagers, cassette tapes, VHS, and desktop computers to
+          communicate and enjoy entertainment.
+        </p>
+      </div>
+    </article>
+
+    <article class="exhibit-card">
+      <img src="https://images.unsplash.com/photo-1516280440614-37939bbacd81?auto=format&fit=crop&w=900&q=85" alt="Music listening">
+      <div class="card-content">
+        <span class="tag">Exhibit 03</span>
+        <h3>Affect, Senses & Feelings</h3>
+        <p>
+          Music, television dramas, and handwritten love letters
+          created emotional connections. These experiences became
+          part of everyday Filipino life.
+        </p>
+      </div>
+    </article>
+
+  </div>
+</section>
+
+<!-- PHOTO GALLERY -->
+<section class="gallery" id="gallery">
+  <div class="section-heading">
+    <span class="tag">A Walk Down Memory Lane</span>
+    <h2>Snapshots of the 90s</h2>
+    <p>A visual collection inspired by the objects, trends, and experiences of the decade.</p>
+  </div>
+
+  <div class="gallery-grid">
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=800&q=85" alt="Live music performance">
+      <p>Music & OPM</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1515886657613-9f3515b0c78f?auto=format&fit=crop&w=800&q=85" alt="Fashion style">
+      <p>Fashion & Style</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=800&q=85" alt="Computer technology">
+      <p>Digital Technology</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1517841905240-472988babdf9?auto=format&fit=crop&w=800&q=85" alt="Portrait">
+      <p>Identity & Expression</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1514525253161-7a46d19cd819?auto=format&fit=crop&w=800&q=85" alt="Concert audience">
+      <p>Shared Experiences</p>
+    </div>
+
+    <div class="gallery-item">
+      <img src="https://images.unsplash.com/photo-1516979187457-637abb4f9353?auto=format&fit=crop&w=800&q=85" alt="Books and reading">
+      <p>Stories & Memories</p>
+    </div>
+
+  </div>
+</section>
+
+<!-- THEN AND NOW -->
+<section class="comparison" id="comparison">
+  <div class="section-heading">
+    <span class="tag">A Changing Philippines</span>
+    <h2>Then & Now</h2>
+    <p>Compare important events and cultural developments from the past with the present.</p>
+  </div>
+
+  <div class="compare-grid">
+
+    <article class="compare-card">
+      <h3>Social</h3>
+      <div class="compare-images">
+        <div>
+          <img src="https://images.unsplash.com/photo-1500530855697-b586d89ba3ee?auto=format&fit=crop&w=700&q=85" alt="Volcanic landscape">
+          <div class="compare-label">1991: Mount Pinatubo</div>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1584982751601-97dcc096659c?auto=format&fit=crop&w=700&q=85" alt="Healthcare worker">
+          <div class="compare-label">2020: COVID-19</div>
+        </div>
+      </div>
+      <p>
+        Both events affected communities and changed everyday life.
+        The Mount Pinatubo eruption displaced thousands, while
+        COVID-19 changed social interaction, education, and public health.
+      </p>
+    </article>
+
+    <article class="compare-card">
+      <h3>Economic</h3>
+      <div class="compare-images">
+        <div>
+          <img src="https://images.unsplash.com/photo-1611974789855-9c2a0a7236a3?auto=format&fit=crop&w=700&q=85" alt="Financial market">
+          <div class="compare-label">1997: Asian Financial Crisis</div>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1542838132-92c53300491e?auto=format&fit=crop&w=700&q=85" alt="Market goods">
+          <div class="compare-label">Today: Inflation</div>
+        </div>
+      </div>
+      <p>
+        Economic challenges affect the cost of living, employment,
+        and household spending. The Asian Financial Crisis affected
+        the region, while inflation remains a concern for Filipino families.
+      </p>
+    </article>
+
+    <article class="compare-card">
+      <h3>Political</h3>
+      <div class="compare-images">
+        <div>
+          <img src="https://images.unsplash.com/photo-1529107386315-e1a2ed48a620?auto=format&fit=crop&w=700&q=85" alt="Government building">
+          <div class="compare-label">1991: Senate Vote on U.S. Bases</div>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1540910419892-4a36d2c3266c?auto=format&fit=crop&w=700&q=85" alt="Voting ballot">
+          <div class="compare-label">2022: National Elections</div>
+        </div>
+      </div>
+      <p>
+        Political participation and national decisions shape the
+        country's direction. The 1991 Senate vote concerned the
+        U.S. military bases agreement, while the 2022 elections
+        reflected the choices of Filipino voters.
+      </p>
+    </article>
+
+    <article class="compare-card">
+      <h3>Cultural</h3>
+      <div class="compare-images">
+        <div>
+          <img src="https://images.unsplash.com/photo-1493225457124-a3eb161ffa5f?auto=format&fit=crop&w=700&q=85" alt="Rock music performance">
+          <div class="compare-label">1990s: Filipino Rock & OPM</div>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1501386761578-eac5c94b800a?auto=format&fit=crop&w=700&q=85" alt="Modern music concert">
+          <div class="compare-label">Today: P-Pop</div>
+        </div>
+      </div>
+      <p>
+        Filipino music continues to evolve. The 1990s popularized
+        bands and alternative rock, while today's P-Pop groups
+        combine Filipino identity with modern global influences.
+      </p>
+    </article>
+
+    <article class="compare-card">
+      <h3>Environmental</h3>
+      <div class="compare-images">
+        <div>
+          <img src="https://images.unsplash.com/photo-1470071459604-3b5ec3a7fe05?auto=format&fit=crop&w=700&q=85" alt="Earth landscape">
+          <div class="compare-label">1992: Rio Earth Summit</div>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1500382017468-9049fed747ef?auto=format&fit=crop&w=700&q=85" alt="Dry agricultural land">
+          <div class="compare-label">Today: El Niño</div>
+        </div>
+      </div>
+      <p>
+        Environmental concerns highlight the importance of protecting
+        natural resources. The Rio Earth Summit encouraged global
+        cooperation, while El Niño brings drought and water challenges.
+      </p>
+    </article>
+
+    <article class="compare-card">
+      <h3>Others: Technology & Innovation</h3>
+      <div class="compare-images">
+        <div>
+          <img src="https://images.unsplash.com/photo-1516321318423-f06f85e504b3?auto=format&fit=crop&w=700&q=85" alt="Computer">
+          <div class="compare-label">1990s: Early Internet</div>
+        </div>
+        <div>
+          <img src="https://images.unsplash.com/photo-1677442136019-21780ecad995?auto=format&fit=crop&w=700&q=85" alt="Artificial intelligence concept">
+          <div class="compare-label">Today: Artificial Intelligence</div>
+        </div>
+      </div>
+      <p>
+        Internet access opened new ways to communicate and find
+        information. Today, artificial intelligence is changing
+        how people learn, work, and create.
+      </p>
+    </article>
+
+  </div>
+</section>
+
+<!-- FUTURE -->
+<section class="future" id="future">
+  <div class="section-heading">
+    <span class="tag">Looking Ahead</span>
+    <h2>Philippines 2030</h2>
+    <p>What might Philippine popular culture and everyday life look like in the next few years?</p>
+  </div>
+
+  <div class="future-grid">
+
+    <div class="future-card">
+      <h3>Body & Self-Image</h3>
+      <p>
+        Fashion may become more personalized through AI styling,
+        digital fashion tools, and wearable technology.
+      </p>
+    </div>
+
+    <div class="future-card">
+      <h3>Technology</h3>
+      <p>
+        AI-powered tools, smart devices, and digital payments
+        may become even more common in everyday life.
+      </p>
+    </div>
+
+    <div class="future-card">
+      <h3>Feelings & Relationships</h3>
+      <p>
+        Digital communication may continue to shape friendships,
+        relationships, entertainment, and self-expression.
+      </p>
+    </div>
+
+    <div class="future-card">
+      <h3>Social & Political Life</h3>
+      <p>
+        Online platforms may create more opportunities for
+        civic participation, awareness, and public discussion.
+      </p>
+    </div>
+
+    <div class="future-card">
+      <h3>Culture</h3>
+      <p>
+        Filipino music, films, and creative works may reach
+        wider audiences through global digital platforms.
+      </p>
+    </div>
+
+    <div class="future-card">
+      <h3>Environment</h3>
+      <p>
+        Sustainability, renewable energy, and climate awareness
+        may become bigger parts of Filipino communities.
+      </p>
+    </div>
+
+  </div>
+</section>
+
+<!-- SOURCES -->
+<section class="sources" id="sources">
+  <div class="section-heading">
+    <span class="tag">References & Credits</span>
+    <h2>Sources & Further Reading</h2>
+    <p>Explore the references used to support the historical and cultural discussions in this museum.</p>
+  </div>
+
+  <div class="source-list">
+    <ul>
+      <li>
+        <a href="https://www.usgs.gov/volcanoes/mount-pinatubo" target="_blank" rel="noopener">
+          U.S. Geological Survey – Mount Pinatubo
+        </a>
+      </li>
+      <li>
+        <a href="https://www.who.int/emergencies/diseases/novel-coronavirus-2019" target="_blank" rel="noopener">
+          World Health Organization – COVID-19
+        </a>
+      </li>
+      <li>
+        <a href="https://www.imf.org/external/np/exr/ib/2000/062300.htm" target="_blank" rel="noopener">
+          International Monetary Fund – Asian Financial Crisis
+        </a>
+      </li>
+      <li>
+        <a href="https://comelec.gov.ph/" target="_blank" rel="noopener">
+          Commission on Elections – Philippines
+        </a>
+      </li>
+      <li>
+        <a href="https://www.un.org/en/conferences/environment/rio1992" target="_blank" rel="noopener">
+          United Nations – Rio Earth Summit
+        </a>
+      </li>
+      <li>
+        <a href="https://www.pagasa.dost.gov.ph/" target="_blank" rel="noopener">
+          DOST-PAGASA – Climate and El Niño Updates
+        </a>
+      </li>
+      <li>
+        <a href="https://www.unesco.org/en/artificial-intelligence" target="_blank" rel="noopener">
+          UNESCO – Artificial Intelligence
+        </a>
+      </li>
+      <li>
+        <a href="https://commons.wikimedia.org/" target="_blank" rel="noopener">
+          Wikimedia Commons – Historical and reference images
+        </a>
+      </li>
+      <li>
+        <a href="https://unsplash.com/" target="_blank" rel="noopener">
+          Unsplash – Illustrative photographs
+        </a>
+      </li>
+    </ul>
+
+    <p style="font-size:13px;color:#846d6d;line-height:1.7">
+      Note: The photographs in this template are illustrative images,
+      not necessarily original photographs of the specific historical
+      events mentioned. Replace them with verified historical images
+      and add the individual photographer or archive credits before
+      submitting your final project.
+    </p>
+  </div>
+</section>
+
+<footer>
+  <strong>THROWBACK PH.</strong>
+  <p>Tracing the Pop: A Digital Museum of Philippine Popular Culture</p>
+  <p>Created for Philippine Popular Culture</p>
+  <p>© 2026 Throwback PH. All rights reserved.</p>
+</footer>
+
+</body>
+</html>
